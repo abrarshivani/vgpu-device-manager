@@ -33,6 +33,7 @@ github.com/russross/blackfriday/v2	v2.1.0	LICENSE.txt	https://github.com/russros
 github.com/sirupsen/logrus	v1.10.1	LICENSE	https://github.com/sirupsen/logrus/blob/v1.10.1/LICENSE
 github.com/spf13/pflag	v1.0.9	LICENSE	https://github.com/spf13/pflag/blob/v1.0.9/LICENSE
 github.com/urfave/cli/v2	v2.27.7	LICENSE	https://github.com/urfave/cli/blob/v2.27.7/LICENSE
+github.com/urfave/cli/v3	v3.11.0	LICENSE	https://github.com/urfave/cli/blob/v3.11.0/LICENSE
 github.com/x448/float16	v0.8.4	LICENSE	https://github.com/x448/float16/blob/v0.8.4/LICENSE
 github.com/xrash/smetrics	v0.0.0-20240521201337-686a1a2994c1	LICENSE	https://github.com/xrash/smetrics/blob/686a1a2994c1/LICENSE
 go.yaml.in/yaml/v2	v2.4.3	LICENSE	https://github.com/yaml/go-yaml/blob/v2.4.3/LICENSE
@@ -57,6 +58,9 @@ google.golang.org/protobuf	v1.36.12-0.20260120151049-f2248ac996af	LICENSE	https:
 google.golang.org/protobuf	v1.36.12-0.20260120151049-f2248ac996af	PATENTS	https://go.googlesource.com/protobuf/+/f2248ac996af/PATENTS
 gopkg.in/evanphx/json-patch.v4	v4.13.0	LICENSE	https://github.com/evanphx/json-patch/blob/v4.13.0/LICENSE
 gopkg.in/inf.v0	v0.9.1	LICENSE	https://github.com/go-inf/inf/blob/v0.9.1/LICENSE
+gopkg.in/yaml.v2	v2.4.0	LICENSE	https://github.com/go-yaml/yaml/blob/v2.4.0/LICENSE
+gopkg.in/yaml.v2	v2.4.0	LICENSE.libyaml	https://github.com/go-yaml/yaml/blob/v2.4.0/LICENSE.libyaml
+gopkg.in/yaml.v2	v2.4.0	NOTICE	https://github.com/go-yaml/yaml/blob/v2.4.0/NOTICE
 gopkg.in/yaml.v3	v3.0.1	LICENSE	https://github.com/go-yaml/yaml/blob/v3.0.1/LICENSE
 gopkg.in/yaml.v3	v3.0.1	NOTICE	https://github.com/go-yaml/yaml/blob/v3.0.1/NOTICE
 k8s.io/api	v0.36.3	LICENSE	https://github.com/kubernetes/api/blob/v0.36.3/LICENSE

@@ -79,6 +79,21 @@ go_import_meta() {
         | LC_ALL=C sed -E 's/.*content="([^"]*)".*/\1/'
 }
 
+# Both module sets, in modules.txt's '# <path> <version>' shape. Keyed by
+# module, so a duplicate at two versions resolves once. The bundled binary's
+# dependencies are not vendored, so modules.txt alone does not name every module
+# needing a repo. The generator is sourced in a child process, not here: it
+# defines OUTPUT, MODULES_TXT and PROXY of its own, which would otherwise
+# silently replace this script's.
+all_modules() {
+    {
+        LC_ALL=C grep '^# ' "${MODULES_TXT}"
+        # $1 is expanded by the child bash, not here.
+        # shellcheck disable=SC2016
+        bash -c 'source "$1"; read_bundled_module_list' _ "${HERE}/generate-third-party-notices.sh"
+    } | LC_ALL=C awk '{ if (!seen[$2]++) print }'
+}
+
 main() {
     command -v curl >/dev/null 2>&1 || die "curl is not installed."
     command -v python3 >/dev/null 2>&1 || die "python3 is not installed."
@@ -139,7 +154,7 @@ main() {
         fi
 
         printf '%s\t%s\t%s\n' "${module}" "${repo}" "${subdir}" >> "${repos_tmp_file}"
-    done < <(LC_ALL=C grep '^# ' "${MODULES_TXT}" | awk '{print $2, $3}')
+    done < <(all_modules | awk '{print $2, $3}')
 
     # A warning, not a die: this resolves every module in modules.txt, including
     # the ten-odd build/test-only ones out of scope for the notices document, so

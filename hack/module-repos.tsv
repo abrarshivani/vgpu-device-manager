@@ -32,6 +32,7 @@ github.com/sirupsen/logrus	https://github.com/sirupsen/logrus
 github.com/spf13/pflag	https://github.com/spf13/pflag	
 github.com/stretchr/testify	https://github.com/stretchr/testify	
 github.com/urfave/cli/v2	https://github.com/urfave/cli	
+github.com/urfave/cli/v3	https://github.com/urfave/cli	
 github.com/x448/float16	https://github.com/x448/float16	
 github.com/xrash/smetrics	https://github.com/xrash/smetrics	
 go.yaml.in/yaml/v2	https://github.com/yaml/go-yaml	
@@ -46,6 +47,7 @@ golang.org/x/time	https://go.googlesource.com/time
 google.golang.org/protobuf	https://go.googlesource.com/protobuf	
 gopkg.in/evanphx/json-patch.v4	https://github.com/evanphx/json-patch	
 gopkg.in/inf.v0	https://github.com/go-inf/inf	
+gopkg.in/yaml.v2	https://github.com/go-yaml/yaml	
 gopkg.in/yaml.v3	https://github.com/go-yaml/yaml	
 k8s.io/api	https://github.com/kubernetes/api	
 k8s.io/apimachinery	https://github.com/kubernetes/apimachinery	
