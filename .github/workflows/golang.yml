@@ -85,6 +85,11 @@ jobs:
       run: |
         make build
 
+  # Regenerates THIRD_PARTY_NOTICES.md and fails if it differs from the
+  # committed copy. The generator also fails when a license file has no
+  # verified URL in hack/license-urls.tsv, which catches a bump that skipped
+  # 'make third-party-notices-urls'. Link rot is caught separately by
+  # third-party-notices-links.yml.
   third-party-notices:
     name: Check third-party notices
     runs-on: linux-amd64-cpu4
