@@ -24,8 +24,8 @@ BUILDIMAGE ?= vgpu-device-manager-build:$(BUILDIMAGE_TAG)
 CMDS := $(patsubst ./cmd/%/,%,$(sort $(dir $(wildcard ./cmd/*/))))
 CMD_TARGETS := $(patsubst %,cmd-%, $(CMDS))
 
-CHECK_TARGETS := assert-fmt vet lint ineffassign misspell
-MAKE_TARGETS := binaries build check fmt lint-internal test examples cmds coverage generate third-party-notices check-third-party-notices $(CHECK_TARGETS) $(CMD_TARGETS)
+CHECK_TARGETS := assert-fmt vet lint ineffassign misspell test-tools
+MAKE_TARGETS := binaries build check fmt lint-internal test examples cmds coverage generate third-party-notices check-third-party-notices third-party-notices-repos third-party-notices-urls $(CHECK_TARGETS) $(CMD_TARGETS)
 
 TARGETS := $(MAKE_TARGETS)
 
@@ -89,6 +89,25 @@ check-third-party-notices: third-party-notices
 		|| { echo "ERROR: THIRD_PARTY_NOTICES.md is not tracked. Run 'make third-party-notices' and commit the result."; exit 1; }
 	@git diff --exit-code -- THIRD_PARTY_NOTICES.md \
 		|| { echo "ERROR: THIRD_PARTY_NOTICES.md is stale. Run 'make third-party-notices' and commit the change."; exit 1; }
+
+# Needs network. Rarely run: keyed by module, so a version bump does not
+# invalidate it. Only a new dependency does.
+third-party-notices-repos:
+	@bash hack/resolve-module-repos.sh
+
+# Needs network. Every URL is content-verified against the vendored copy before
+# it is written, so re-run this whenever a dependency version changes.
+third-party-notices-urls: $(GO_LICENSES) third-party-notices-repos
+	@bash hack/verify-license-urls.sh
+
+test-tools:
+	@for t in hack/*_test.sh; do \
+		bash "$$t" || exit 1; \
+	done
+
+# Lets CI build the tool by name; the file target is an absolute path.
+.PHONY: install-go-licenses
+install-go-licenses: $(GO_LICENSES)
 
 # Generate an image for containerized builds
 # Note: This image is local only
